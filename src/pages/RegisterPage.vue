@@ -33,7 +33,7 @@
                             'No coinciden las contraseñas',
                     ]"
                 ></q-input>
-                <q-btn label="Login" type="submit"></q-btn>
+                <q-btn label="Register" type="submit"></q-btn>
             </q-form>
         </div>
     </q-page>

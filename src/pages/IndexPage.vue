@@ -1,35 +1,21 @@
 <template>
-  <q-page padding>
-    <!-- <q-btn @click="userStore.access">Ingresar</q-btn> -->
-    <q-btn @click="createLink">Crear Link</q-btn>
-    <!-- <q-btn @click="userStore.logout">Cerrar sesión</q-btn> -->
-    {{ userStore.token }} - {{ userStore.expiresIn }}
-  </q-page>
+    <q-page padding>
+        <AddLink />
+        <pre>
+            {{ useLink.links }}
+        </pre>
+        <template v-for="link in useLink.links" :key="link._id">
+            <LinkCard />
+        </template>
+    </q-page>
 </template>
 
 <script setup>
-import { api } from "src/boot/axios";
-import { useUserStore } from "../stores/user-store";
+import { useLinkStore } from "../stores/link-store.js";
 
-const userStore = useUserStore();
+// component
+import addLink from "../components/AddLink.vue";
+import LinkCard from "../components/LinkCard.vue";
 
-// userStore.refreshToken();
-
-const createLink = async () => {
-  try {
-    const res = await api({
-      method: "POST",
-      url: "/links",
-      headers: {
-        Authorization: "Bearer " + token.value,
-      },
-      data: {
-        longLink: "https://axios-http.com/docs/req_config",
-      },
-    });
-    console.log(res.data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+const useLink = useLinkStore();
 </script>
