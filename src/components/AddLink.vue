@@ -31,7 +31,7 @@ const addLink = async () => {
 </script>
 
 <template>
-    <q-form @submit.prevent="addLink">
+    <q-form @submit.prevent="addLink" class="q-mb-xl">
         <q-input
             v-model="link"
             label="Ingrese link"
